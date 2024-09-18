@@ -1,0 +1,110 @@
+name: Autograding Tests
+'on':
+- push
+- repository_dispatch
+permissions:
+  checks: write
+  actions: read
+  contents: read
+jobs:
+  run-autograding-tests:
+    runs-on: ubuntu-latest
+    if: github.actor != 'github-classroom[bot]'
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+    - name: Test 1 q1
+      id: test-1-q1
+      uses: classroom-resources/autograding-command-grader@v1
+      with:
+        test-name: Test 1 q1
+        setup-command: pip install numpy pandas scikit-learn matplotlib seaborn
+        command: python3 .test_q1_1.py
+        timeout: 2
+        max-score: 1
+    - name: Test 2 q1
+      id: test-2-q1
+      uses: classroom-resources/autograding-command-grader@v1
+      with:
+        test-name: Test 2 q1
+        setup-command: pip install numpy pandas scikit-learn matplotlib seaborn
+        command: python3 .test_q1_2.py
+        timeout: 2
+        max-score: 2
+    - name: Test 3 q1
+      id: test-3-q1
+      uses: classroom-resources/autograding-command-grader@v1
+      with:
+        test-name: Test 3 q1
+        setup-command: pip install numpy pandas scikit-learn matplotlib seaborn
+        command: python3 .test_q1_3.py
+        timeout: 2
+        max-score: 1
+    - name: Test 4 q1
+      id: test-4-q1
+      uses: classroom-resources/autograding-command-grader@v1
+      with:
+        test-name: Test 4 q1
+        setup-command: pip install numpy pandas scikit-learn matplotlib seaborn
+        command: python3 .test_q1_4.py
+        timeout: 2
+        max-score: 2
+    - name: Test 5 q1
+      id: test-5-q1
+      uses: classroom-resources/autograding-command-grader@v1
+      with:
+        test-name: Test 5 q1
+        setup-command: pip install numpy pandas scikit-learn matplotlib seaborn
+        command: python3 .test_q1_5.py
+        timeout: 2
+        max-score: 1
+    - name: Test 6 q1
+      id: test-6-q1
+      uses: classroom-resources/autograding-command-grader@v1
+      with:
+        test-name: Test 6 q1
+        setup-command: pip install numpy pandas scikit-learn matplotlib seaborn
+        command: python3 .test_q1_6.py
+        timeout: 2
+        max-score: 2
+    - name: Test 7 q1
+      id: test-7-q1
+      uses: classroom-resources/autograding-command-grader@v1
+      with:
+        test-name: Test 7 q1
+        setup-command: pip install numpy pandas scikit-learn matplotlib seaborn
+        command: python3 .test_q1_7.py
+        timeout: 2
+        max-score: 1
+    - name: Test 8 q1
+      id: test-8-q1
+      uses: classroom-resources/autograding-command-grader@v1
+      with:
+        test-name: Test 8 q1
+        setup-command: pip install numpy pandas scikit-learn matplotlib seaborn
+        command: python3 .test_q1_8.py
+        timeout: 2
+        max-score: 2
+    - name: Test 1 q2
+      id: test-1-q2
+      uses: classroom-resources/autograding-command-grader@v1
+      with:
+        test-name: Test 1 q2
+        setup-command: pip install numpy pandas scikit-learn matplotlib seaborn
+        command: python3 .test_q2_1.py
+        timeout: 5
+        max-score: 4
+    - name: Autograding Reporter
+      uses: classroom-resources/autograding-grading-reporter@v1
+      env:
+        TEST-1-Q1_RESULTS: "${{steps.test-1-q1.outputs.result}}"
+        TEST-2-Q1_RESULTS: "${{steps.test-2-q1.outputs.result}}"
+        TEST-3-Q1_RESULTS: "${{steps.test-3-q1.outputs.result}}"
+        TEST-4-Q1_RESULTS: "${{steps.test-4-q1.outputs.result}}"
+        TEST-5-Q1_RESULTS: "${{steps.test-5-q1.outputs.result}}"
+        TEST-6-Q1_RESULTS: "${{steps.test-6-q1.outputs.result}}"
+        TEST-7-Q1_RESULTS: "${{steps.test-7-q1.outputs.result}}"
+        TEST-8-Q1_RESULTS: "${{steps.test-8-q1.outputs.result}}"
+        TEST-1-Q2_RESULTS: "${{steps.test-1-q2.outputs.result}}"
+      with:
+        runners: test-1-q1,test-2-q1,test-3-q1,test-4-q1,test-5-q1,test-6-q1,test-7-q1,test-8-q1,test-1-q2
