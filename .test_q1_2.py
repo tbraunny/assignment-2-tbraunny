@@ -6,7 +6,7 @@ import numpy as np
 class TestMyLogisticRegression(unittest.TestCase):
 
 	def test_basic_play_game_1(self):
-		classifier = MyLogisticRegression('1')
+		classifier = MyLogisticRegression('1',True)
 		[accuracy, precision, recall, f1, support] = classifier.model_predict_linear()
 
 		ans = accuracy >=0.8 and precision[0] >= 0.7 and recall[0] >= 0.8 \
