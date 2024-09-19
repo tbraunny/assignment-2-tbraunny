@@ -68,7 +68,8 @@ class MyLogisticRegression:
             y_pred = self.model_linear.predict(self.X_test)
             y_pred_binary = (y_pred > 0.5).astype(bool)
 
-            accuracy = self.model_linear.score(self.X_test , self.y_test.values.reshape(-1 , 1))
+            #accuracy = self.model_linear.score(self.X_test , self.y_test.values.reshape(-1 , 1))
+            accuracy = accuracy_score(self.y_test.values.reshape(-1 , 1) , y_pred_binary)
             precision , recall , f1 , support = precision_recall_fscore_support(self.y_test.values.reshape(-1 , 1) , y_pred_binary)   
         
         assert precision.shape == recall.shape == f1.shape == support.shape == (2,), "precision, recall, f1, support should be an array of shape (2,)"        
